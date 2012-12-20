@@ -1,4 +1,3 @@
-
 /*
 	ajaxform: Anthony Armstrong
 		version: 2.0.0
@@ -14,10 +13,10 @@
 		var ajax_form = new Form();
 
 		// has a method been passed in?
-		if (ajax_form.method) {
+		if (ajax_form[method]) {
 
 			// call the given method with any arguments that may have been passed in
-			return ajax_form.method.apply(this, Array.prototype.slice.call(arguments, 1));
+			return ajax_form[method].apply(this, Array.prototype.slice.call(arguments, 1));
 
 		// if an object has been passed in or no method...
 		} else if (typeof method === 'object' || !method) {
