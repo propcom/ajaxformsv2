@@ -11,4 +11,8 @@ $('#frm-test').ajaxform({
   	'show_alert'     : false
 })
 
-See script.js
+(See script.js)
+
+Working example at;-
+
+http://ajaxforms.anthony.local/
