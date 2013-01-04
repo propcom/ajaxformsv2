@@ -60,7 +60,7 @@
 
 		check_select : function(field) {
 
-			if(field.children(':selected').val() == "Day" || field.children(':selected').val() == "Month" || field.children(':selected').val() == "Year" || field.children(':selected').val() == "Hour" || field.children(':selected').val() == "Minute" ){   
+			if(field.children(':selected').val() == "Day" || field.children(':selected').val() == "Month" || field.children(':selected').val() == "Year" || field.children(':selected').val() == "Hour" || field.children(':selected').val() == "Minute" || field.children(':selected').val().length() <= 0){   
 				this.val_res[field.attr('id')] = "Please select an option";
 			}
 
