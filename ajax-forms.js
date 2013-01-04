@@ -2,7 +2,7 @@
 /*
 	ajaxform: Anthony Armstrong
 		version: 2.0.0
-		last modified: 2013-01-04
+		last modified: 2012-12-20
 */
 
 (function($) {
@@ -60,7 +60,7 @@
 
 		check_select : function(field) {
 
-			if(field.children(':selected').val() == "Day" || field.children(':selected').val() == "Month" || field.children(':selected').val() == "Year" || field.children(':selected').val() == "Hour" || field.children(':selected').val() == "Minute" || field.children(':selected').val().length() <= 0){   
+			if(field.children(':selected').val() == "Day" || field.children(':selected').val() == "Month" || field.children(':selected').val() == "Year" || field.children(':selected').val() == "Hour" || field.children(':selected').val() == "Minute" || field.children(':selected').val().length <= 0){   
 				this.val_res[field.attr('id')] = "Please select an option";
 			}
 
@@ -118,7 +118,7 @@
 
 		error_handler : function(form_instance) {
 
-			console.log(this.val_res);
+			var input_handle = null;
 
 			switch(form_instance.settings.error_location) {
 
@@ -136,6 +136,8 @@
 						var input = form_instance.handle.find('#' + input_name);
 
 						input.addClass('error');
+
+						input_handle = input;
 
 					}
 
@@ -166,6 +168,8 @@
  						} 
 	 					
  						label.addClass('error');
+
+ 						input_handle = label;
 
 					}
 
@@ -213,6 +217,7 @@
 						// add to DOM
 						tooltip_label.insertAfter(input);
 							
+						input_handle = tooltip_label;
 						
 					}
 
@@ -224,11 +229,15 @@
 				alert('You have not filled in all required fields correctly, please check the form and try again.');
 			}
 
+			// handle globe select plugin...
+			var globe_select = input_handle.parents('.field-wrap').find('span.select');
+			if (globe_select.size() > 0) {
+				globe_select.addClass('error');
+			}
+
 		},
 
 		send_request : function(form_instance) {
-
-			console.log(this);
 
 			var instance = this;
 
