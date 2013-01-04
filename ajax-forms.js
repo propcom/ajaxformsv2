@@ -230,10 +230,24 @@
 			}
 
 			// handle globe select plugin...
-			var globe_select = input_handle.parents('.field-wrap').find('span.select');
-			if (globe_select.size() > 0) {
-				globe_select.addClass('error');
-			}
+            for (input_handle in this.val_res) {
+                            
+                // if input_handle is the error_count
+                if (input_handle == 'error_count') {
+                    continue;
+                }
+                
+                var j_input = $('#' + input_handle);
+                var j_input_type = j_input[0].nodeName;
+                
+                if (j_input_type == "SELECT") {
+                    var globe_select = j_input.parents('.field-wrap').find('span.select');
+                    if (globe_select.size() > 0) {
+                        globe_select.addClass('error');
+                    }
+                }              
+            }
+
 
 		},
 
@@ -429,8 +443,6 @@
 
 							case 'tooltip' :
 
-								//var error_location_id = 'lbl-' + input_id + '-error';
-
 								// is there an error element?
 								var error_element = $(this).parents('div.field-wrap').find('label.error-tooltip');
 								if (error_element.size() > 0) {
@@ -441,6 +453,13 @@
 
 							break;
 						}
+
+						// does it use 'globe select'
+						var globe_select = $(this).parents('.field-wrap').find('span.select');
+						if (globe_select.size() > 0) {
+							globe_select.removeClass('error');
+						}
+					
 
 					}
 
