@@ -2,7 +2,7 @@
 /*
 	ajaxform: Anthony Armstrong
 		version: 2.0.0
-		last modified: 2012-12-20
+		last modified: 2013-01-04
 */
 
 (function($) {
@@ -265,8 +265,8 @@
 			  				form_handle.parents('div.' + form_class).html(success_text.fadeTo(300, 1));
 			  				form_handle.remove();
 
-			  				if (form_instance.settings.callback != null) {
-			  					form_instance.settings.callback.call(undefined);
+			  				if (form_instance.settings.form_success != null) {
+			  					form_instance.settings.form_success.call(undefined);
 			  				}
 			  				
 			  			});
@@ -310,6 +310,11 @@
 								e.preventDefault();
 								instance.register_events(form_instance);
 							});
+
+							// call fail callback
+							if (form_instance.settings.form_failure != null) {
+			  					form_instance.settings.form_failure.call(undefined);
+			  				}
 
 			  			});
 
@@ -365,7 +370,8 @@
 		    instance.settings = $.extend({
 		    	error_location   : 'input',
 		    	show_alert       : false,
-		    	callback         : function() {}
+		    	form_success     : function() {},
+		    	form_failure     : function() {}
 		    }, options);
 
 		    // get handle on form
