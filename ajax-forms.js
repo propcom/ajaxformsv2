@@ -1,3 +1,4 @@
+
 /*
 	ajaxform: Anthony Armstrong
 		version: 2.0.0
@@ -117,6 +118,8 @@
 
 		error_handler : function(form_instance) {
 
+			console.log(this.val_res);
+
 			switch(form_instance.settings.error_location) {
 
 				case 'input' :
@@ -225,6 +228,8 @@
 
 		send_request : function(form_instance) {
 
+			console.log(this);
+
 			var instance = this;
 
 			// define srv_field
@@ -259,6 +264,10 @@
 			  				// show the success text
 			  				form_handle.parents('div.' + form_class).html(success_text.fadeTo(300, 1));
 			  				form_handle.remove();
+
+			  				if (form_instance.settings.callback != null) {
+			  					form_instance.settings.callback.call(undefined);
+			  				}
 			  				
 			  			});
 
@@ -354,8 +363,9 @@
 			
 			// create some defaults, extending them with any options that were provided
 		    instance.settings = $.extend({
-		    	'error_location' : 'input',
-		    	'show_alert'     : false
+		    	error_location   : 'input',
+		    	show_alert       : false,
+		    	callback         : function() {}
 		    }, options);
 
 		    // get handle on form
