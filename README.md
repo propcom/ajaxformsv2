@@ -42,14 +42,14 @@ Usage
 Options
 -----------------------
 
-  - *error_location* : where the class of 'error' is to be added, 'input', 'label' or 'tooltip' 
-  - *show_alert*     : show errors as an alert as well as the error location
+  - **error_location** : *string* | where the class of 'error' is to be added, 'input', 'label' or 'tooltip' 
+  - **show_alert**     : *bool* | show errors as an alert as well as the error location
  
 Callbacks
 -----------------------
  
-  - *form_success* : fires when the server response contains the 'successText'
-  - *form_failure* : fires when the server response contains the 'errorText' 
+  - **form_success** : fires when the server response contains the 'successText'
+  - **form_failure** : fires when the server response contains the 'errorText' 
   
   - **Note:** You must not remove the paragraph elements with the classes 'successText' or 'errorText' from the form markup, the plugin uses these for validation and will fail if you do. You *can* empty them of content if required.
 
