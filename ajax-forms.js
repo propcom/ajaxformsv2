@@ -1,11 +1,16 @@
 
 /*
 	ajaxform: Anthony Armstrong
-		version: 2.0.0
-		last modified: 2012-12-20
+		version: 2.0.1
+		last modified: 2013-02-13
 */
 
 (function($) {
+
+	// add 'hasAttr' to jquery
+	$.fn.hasAttr = function(name) {  
+	   return this.attr(name) !== undefined || false;
+	};
 
 	// static controller, I guess...
 	$.fn.ajaxform = function(method) {
@@ -42,18 +47,31 @@
 
 	FormController.prototype = {
 
+		check_placeholder : function(field) {
+
+			if (field.hasAttr('placeholder')) {
+
+				// does the value in the field match the placeholder?
+				if (field.val() == field.attr('placeholder')) {
+					return true;
+				}
+			} 
+		},
+
 		check_text : function(field) {
 
-			if (field.attr('id').indexOf('email') != -1 && this.response === true) {
+			if (field.attr('id').search('email') != -1 && this.response === true) {
 				this.val_res[field.attr('id')] = "E-mail supplied is invalid";
 			} else {
-				if (field.val() == "") {
+
+				if (field.val() == "" || this.check_placeholder(field)) {
 					this.val_res[field.attr('id')] = "Please enter a value";
-				} else {
-					if (field.val().length < 2) {
-						this.val_res[field.attr('id')] = "Minimum of three characters required";
-					} 
-				}
+				} 
+
+				if (field.val() != "" && field.val().length < 2) {
+					this.val_res[field.attr('id')] = "Minimum of three characters required";
+				} 
+				
 			}
 
 		},
@@ -254,6 +272,13 @@
 		send_request : function(form_instance) {
 
 			var instance = this;
+
+			// clear unpopulated placeholder fields
+			form_instance.handle.find('*[placeholder]').each(function() {
+				if (instance.check_placeholder($(this))) {
+					$(this).val('');
+				}
+			});
 
 			// define srv_field
 			instance.srv_field = [];
