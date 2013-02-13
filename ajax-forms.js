@@ -1,7 +1,7 @@
 
 /*
 	ajaxform: Anthony Armstrong
-		version: 2.0.1
+		version: 2.0.2
 		last modified: 2013-02-13
 */
 
@@ -332,9 +332,13 @@
 
 			  				// get handle on new returned html
 			  				var error_form = $(data).find('#' + form_instance.handle.attr('id'));
-
+			  				
 			  				// show the returned form
-							form_handle.parents('div.' + form_class).html(error_form.parent().fadeTo(300, 1));
+							form_handle.parents('div.' + form_class).html(error_form.fadeTo(300, 1, function() {
+								// insert the error text
+			  					error_text.insertBefore(error_form);
+							}));
+
 							form_handle.remove();
 
 							// update the form handle property
