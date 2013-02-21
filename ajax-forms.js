@@ -1,8 +1,8 @@
 
 /*
 	ajaxform: Anthony Armstrong
-		version: 2.0.2
-		last modified: 2013-02-13
+		version: 2.0.3
+		last modified: 2013-02-21
 */
 
 (function($) {
@@ -58,6 +58,24 @@
 			} 
 		},
 
+		check_radio : function(field) {
+
+			// assume non checked...
+			var none_checked = true;
+
+			$('input:radio[name="'+field.attr('name')+'"]').each(function() {
+				if ($(this).is(':checked')) {
+					none_checked = false; // found a checked radio, exit...
+					return false;
+				} 
+			});
+
+			if (none_checked) {
+				this.val_res[field.attr('name')] = "You must select an option";
+			}
+				
+		},
+
 		check_text : function(field) {
 
 			if (field.attr('id').search('email') != -1 && this.response === true) {
@@ -109,6 +127,10 @@
 
 					case 'textarea' :
 						this.check_text(field);
+					break;
+
+					case 'radio' :
+						this.check_radio(field);
 					break;
 
 				}
