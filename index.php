@@ -74,47 +74,47 @@
             </div>
             
             <div class="field-wrap<?php if($fh->fields['email']->isError) {?> error<?}?>">
-                <label for="<?=$multiFormName?>-email">E-Mail</label><br />
+                <label for="<?=$multiFormName?>-email">E-Mail</label>
                 <input type="text" name="email" id="<?=$multiFormName?>-email" value="<?php echo $fh->fields['email']->value?>" data-required="<?=$emailRequired; ?>" />
             </div>
            
             <div class="field-wrap<?php if($fh->fields['phone']->isError) {?> error<?}?>">
-                <label for="<?=$multiFormName?>-phone">Phone</label><br />
+                <label for="<?=$multiFormName?>-phone">Phone</label>
                 <input type="text" name="phone" id="<?=$multiFormName?>-phone" value="<?php echo $fh->fields['phone']->value?>" data-required="<?=$phoneRequired; ?>" />
             </div>
             
             <div class="field-wrap<?php if($fh->fields['address']->fields['address1']->isError) {?> error<?}?>">
-                <label for="<?=$multiFormName?>-address-address1">Address 1</label><br />
+                <label for="<?=$multiFormName?>-address-address1">Address 1</label>
                 <input type="text" name="address-address1" id="<?=$multiFormName?>-address-address1" value="<?php echo $fh->fields['address']->fields['address1']->value?>" data-required="<?=$addressRequired; ?>" />
             </div>
            
             <div class="field-wrap<?php if($fh->fields['address']->fields['address2']->isError) {?> error<?}?>">
-                <label for="<?=$multiFormName?>-address-address1">Address 2</label><br />
+                <label for="<?=$multiFormName?>-address-address1">Address 2</label>
                 <input type="text" name="address-address2" id="<?=$multiFormName?>-address-address2" value="<?php echo $fh->fields['address']->fields['address2']->value?>" data-required="0" />
             </div>
             
             <div class="field-wrap<?php if($fh->fields['address']->fields['town']->isError) {?> error<?}?>">
-                <label for="<?=$multiFormName?>-address-town">Town/City</label><br />
+                <label for="<?=$multiFormName?>-address-town">Town/City</label>
                 <input type="text" name="address-town" id="<?=$multiFormName?>-address-town" value="<?php echo $fh->fields['address']->fields['town']->value?>" data-required="<?=$addressRequired; ?>" />
             </div>
             
             <div class="field-wrap<?php if($fh->fields['address']->fields['county']->isError) {?> error<?}?>">
-                <label for="<?=$multiFormName?>-address-county">County</label><br />
+                <label for="<?=$multiFormName?>-address-county">County</label>
                 <input type="text" name="address-county" id="<?=$multiFormName?>-address-county" value="<?php echo $fh->fields['address']->fields['county']->value?>" data-required="0" />
             </div>
             
             <div class="field-wrap<?php if($fh->fields['address']->fields['postcode']->isError) {?> error<?}?>">
-                <label for="<?=$multiFormName?>-address-postcode">Postcode</label><br />
+                <label for="<?=$multiFormName?>-address-postcode">Postcode</label>
                 <input type="text" name="address-postcode" id="<?=$multiFormName?>-address-postcode" value="<?php echo $fh->fields['address']->fields['postcode']->value?>" data-required="<?=$addressRequired; ?>" />
             </div>
 
             <div class="field-wrap<?php if($fh->fields['address']->fields['country']->isError) {?>error<?}?>">
-                <label for="<?=$multiFormName?>-address-country">Country</label><br />
+                <label for="<?=$multiFormName?>-address-country">Country</label>
                 <input type="text" name="address-country" id="<?=$multiFormName?>-address-country" value="<?php echo $fh->fields['address']->fields['country']->value?>" data-required="0" />
             </div>
             
             <div class="field-wrap<?php if($fh->fields['additional-info']->isError) {?> error<?}?>">
-                <label for="<?=$multiFormName?>-additional-info">Additional Info</label><br />
+                <label for="<?=$multiFormName?>-additional-info">Additional Info</label>
                 <input type="text" name="additional-info" id="<?=$multiFormName?>-additional-info" value="<?php echo $fh->fields['additional-info']->value?>" data-required="<?=$additionalInfoRequired; ?>" />
             </div>
 
@@ -132,7 +132,7 @@
             <?php } ?> */ ?>
             
             <div class="field-wrap<?php if($fh->fields['comments']->isError) {?> error<?}?>">
-                <label for="<?=$multiFormName?>-comments">Comments</label><br />
+                <label for="<?=$multiFormName?>-comments">Comments</label>
                 <textarea name="comments" cols="" rows="5" id="<?=$multiFormName?>-comments" data-required="<?=$commentsRequired; ?>"><?php echo $fh->fields['comments']->value?></textarea>
             </div>
  
