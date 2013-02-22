@@ -16,6 +16,7 @@ Features
 --------
 
 - Easy implementation
+- Works with globe select styles
 - It works...
 
 
