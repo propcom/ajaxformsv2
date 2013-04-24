@@ -9,7 +9,7 @@
 	$fh = $multiForms[$multiFormName];
 	?>
 
-    <div class="<?=$multiFormName; ?>-wrapper">
+    <div id="<?=$multiFormName; ?>-wrapper">
 
     <? // Success Text ?>
     <? if($fh->showSuccessText): ?>

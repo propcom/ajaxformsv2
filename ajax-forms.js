@@ -1,8 +1,8 @@
 
 /*
 	ajaxform: Anthony Armstrong
-		version: 2.0.3
-		last modified: 2013-02-21
+		version: 2.0.5
+		last modified: 2013-04-24
 */
 
 (function($) {
@@ -84,11 +84,7 @@
 
 				if (field.val() == "" || this.check_placeholder(field)) {
 					this.val_res[field.attr('id')] = "Please enter a value";
-				} 
-
-				if (field.val() != "" && field.val().length < 2) {
-					this.val_res[field.attr('id')] = "Minimum of three characters required";
-				} 
+				}
 				
 			}
 
@@ -313,6 +309,14 @@
 				dataType: 'html',
 				data: serialized,
 				type: 'POST',
+				beforeSend: function() {
+
+					// lock form and show loading text
+					var form_handle = $('#' + form_instance.handle.attr('id'));
+					form_handle.find('input, textarea, select').attr('disabled', 'disabled');
+					form_handle.find('input.submit').val('Working...');
+
+				},
 			  	success: function(data) {
 
 			  		var form_handle = $('#' + form_instance.handle.attr('id'));
@@ -323,7 +327,7 @@
 			  		var welcomeText = form_handle.parent().find('p.welcomeText');
 			  		var success_text = $(data).find('p.successText');
 			  		var error_text = $(data).find('p.errorText');
-			  		var form_class = form_handle.parent().attr('class');
+			  		var form_wrapper = form_handle.parent().attr('id');
 
 			  		// all good server side
 			  		if (success_text.size() > 0) {
@@ -332,7 +336,7 @@
 			  			form_handle.fadeTo(300, 0, function() {
 
 			  				// show the success text
-			  				form_handle.parents('div.' + form_class).html(success_text.fadeTo(300, 1));
+			  				form_handle.parents('div#' + form_wrapper).html(success_text.fadeTo(300, 1));
 			  				form_handle.remove();
 
 			  				if (form_instance.settings.form_success != null) {
@@ -356,7 +360,7 @@
 			  				var error_form = $(data).find('#' + form_instance.handle.attr('id'));
 			  				
 			  				// show the returned form
-							form_handle.parents('div.' + form_class).html(error_form.fadeTo(300, 1, function() {
+							form_handle.parents('div#' + form_wrapper).html(error_form.fadeTo(300, 1, function() {
 								// insert the error text
 			  					error_text.insertBefore(error_form);
 							}));
@@ -467,7 +471,7 @@
 					// get field type
 					var field_type = e.target.nodeName;
 
-					if ((field_type == 'INPUT' || field_type == 'TEXTAREA') && $(this).val().length > 2 || field_type =='SELECT' && $(this).val() != "") {
+					if ((field_type == 'INPUT' || field_type == 'TEXTAREA') && $(this).val().length > 0 || field_type =='SELECT' && $(this).val() != "") {
 
 						// get the id
 						var input_id = $(this).attr('id');
