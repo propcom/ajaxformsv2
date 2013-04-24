@@ -1,4 +1,4 @@
-ajaxforms (v2.0.3)
+ajaxforms (v2.0.5)
 ================
 
 jQuery Plugin designed to encapsulate the Propeller form code in an AJAX request.
