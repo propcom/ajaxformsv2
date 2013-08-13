@@ -8,6 +8,7 @@ $(document).ready(function() {
     $('#frm-test').ajaxform({
         error_location   : 'input', // input, label or tooltip
         show_alert       : false,
+        single_page_site : false,
         form_success     : function() {
             alert("This is a callback for when the form passes server validation successfully!");
         },
